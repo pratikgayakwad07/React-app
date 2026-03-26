@@ -1,0 +1,16 @@
+name: Call Reusable Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  use-reusable-workflow:
+    uses: pratikgayakwad07/common-workflows/.github/workflows/react-deploy.yml@main
+    with:
+      aws-region: ${{ secrets.AWS_REGION }}
+      s3-bucket: ${{ secrets.S3_BUCKET_NAME }}
+    secrets:
+      aws-access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
