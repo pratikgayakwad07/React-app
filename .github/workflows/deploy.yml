@@ -1,0 +1,22 @@
+name: React CI/CD using Composite Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Composite Action
+        uses: pratikgayakwad07/My-Org-Composite-Action/react-s3-deploy@main
+        with:
+          aws-access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          s3-bucket: ${{ secrets.S3_BUCKET_NAME }}
